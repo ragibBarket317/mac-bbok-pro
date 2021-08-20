@@ -1,26 +1,32 @@
-function configuration(clickButton, dollar) {
-    const bestPrice = document.getElementById(clickButton);
-    bestPrice.innerText = dollar;
+// Different Configuration Price Set
+function configuration(clickButtonId, dollar) {
+    const configurationPrice = document.getElementById(clickButtonId);
+    configurationPrice.innerText = dollar;
     totalPrice()
 }
+
+//Convert String To Number
+function differentConfigPrice(clickButtonId) {
+    const specification = document.getElementById(clickButtonId);
+    const specificationPriceNumber = parseInt(specification.innerText);
+    return specificationPriceNumber;
+}
+// Calculate Total Price
 function totalPrice() {
-    const lowMemory = document.getElementById('best-price');
-    const memoryText = parseInt(lowMemory.innerText);
-    const highMemory = document.getElementById('highest-memory-price');
-    const highMemoryText = parseInt(highMemory.innerText);
-    const ssdStorage = document.getElementById('ssd-price');
-    const ssdStorageText = parseInt(ssdStorage.innerText);
-    const deliveryCharge = document.getElementById('delivery-charge');
-    const deliveryChargeText = parseInt(deliveryCharge.innerText);
+    const bestPrice = differentConfigPrice('best-price');
+    const memoryPrice = differentConfigPrice('memory-price');
+    const ssdStorage = differentConfigPrice('ssd-price');
+    const deliveryCharge = differentConfigPrice('delivery-charge');
+    //total
+    const total = bestPrice + memoryPrice + ssdStorage + deliveryCharge;
 
-    const total = memoryText + highMemoryText + ssdStorageText + deliveryChargeText;
-
-
+    // total price
     const totalAmount = document.getElementById('total-amount').innerText = total;
     const finalTotalAmount = document.getElementById('final-total').innerText = total;
     return finalTotalAmount;
 }
-// Cupon code function
+
+// Using Cupon code for discount
 function discountPrice() {
     const useCupon = document.getElementById('use-cupon');
     const useCuponText = useCupon.value;
@@ -37,11 +43,12 @@ function discountPrice() {
     useCupon.value = '';
 }
 
+// Click Button One By One
 document.getElementById('lowest-memory').addEventListener('click', function () {
-    configuration('highest-memory-price', '0')
+    configuration('memory-price', '0')
 });
 document.getElementById('highest-memory').addEventListener('click', function () {
-    configuration('highest-memory-price', '180')
+    configuration('memory-price', '180')
 });
 document.getElementById('low-storage').addEventListener('click', function () {
     configuration('ssd-price', '0');
